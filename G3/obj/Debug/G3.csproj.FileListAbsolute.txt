@@ -4,3 +4,10 @@ C:\Users\Пользователь\Desktop\c#\Семинары 2 курс\7 бл�
 C:\Users\Пользователь\Desktop\c#\Семинары 2 курс\7 блок\G3\G3\obj\Debug\G3.csprojResolveAssemblyReference.cache
 C:\Users\Пользователь\Desktop\c#\Семинары 2 курс\7 блок\G3\G3\obj\Debug\G3.exe
 C:\Users\Пользователь\Desktop\c#\Семинары 2 курс\7 блок\G3\G3\obj\Debug\G3.pdb
+C:\Git\G3\G3\bin\Debug\G3.exe.config
+C:\Git\G3\G3\bin\Debug\G3.exe
+C:\Git\G3\G3\bin\Debug\G3.pdb
+C:\Git\G3\G3\obj\Debug\G3.csprojResolveAssemblyReference.cache
+C:\Git\G3\G3\obj\Debug\G3.csproj.CoreCompileInputs.cache
+C:\Git\G3\G3\obj\Debug\G3.exe
+C:\Git\G3\G3\obj\Debug\G3.pdb

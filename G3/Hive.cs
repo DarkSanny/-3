@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace G3 {
+namespace G3
+{
 
     public class Point {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int X { get; }
+        public int Y { get; }
 
         public Point(int x, int y) {
             X = x;
@@ -20,7 +19,7 @@ namespace G3 {
         }
 
         public override bool Equals(object obj) {
-            var point = obj as Point;
+            if (!(obj is Point point)) return false;
             return X == point.X && Y == point.Y;
         }
 
@@ -29,16 +28,12 @@ namespace G3 {
         }
     }
 
-    class Hive {
+    public class Hive {
 
         private bool[][] hive;
         private Dictionary<Point, Point> teleports;
 
-        public int Height {
-            get {
-               return hive.Length;
-            }
-        }
+        public int Height => hive.Length;
 
         public int Width (int x) {
             if (x < Height)
@@ -52,14 +47,14 @@ namespace G3 {
         }
 
         public IEnumerable<Point> AreaOfPoint(int x, int y) {
-            for (int i = -1; i <= 1; i++) {
+            for (var i = -1; i <= 1; i++) {
                 if (i % 2 != 0) {
                     var startX = x - 1;
                     if (y % 2 != 0) startX++;
-                    yield return new Point(startX++, y + i);
-                    yield return new Point(startX++, y + i);
+                    yield return new Point(startX, y + i);
+                    yield return new Point(startX+1, y + i);
                 } else
-                    for (int j = -1; j <= 1; j++)
+                    for (var j = -1; j <= 1; j++)
                         yield return new Point(x + j, y); 
             }
             if (teleports.ContainsKey(new Point(x, y)))
@@ -84,7 +79,7 @@ namespace G3 {
                };
             hive = maze
                 .Select(i => i
-                    .Select(j => j == '#' ? false : true)
+                    .Select(j => j != '#')
                     .ToArray())
                 .ToArray();
             teleports = new Dictionary<Point, Point>();
@@ -111,10 +106,9 @@ namespace G3 {
         }
 
         public void Print(List<Point> path) {
-            for (int i = 0; i < hive.Length; i++) {
-                for (int j = 0; j < hive[i].Length; j++) {
-                    if (path.Contains(new Point(j, i))) Console.ForegroundColor = ConsoleColor.Red;
-                    else Console.ForegroundColor = ConsoleColor.White;
+            for (var i = 0; i < hive.Length; i++) {
+                for (var j = 0; j < hive[i].Length; j++) {
+                    Console.ForegroundColor = path.Contains(new Point(j, i)) ? ConsoleColor.Red : ConsoleColor.White;
                     var symbol = (hive[i][j] ? '.' : '#');
                     if (teleports.ContainsKey(new Point(j, i))) symbol = 'O';
                     if (i % 2 != 0) Console.Write(" " + symbol);

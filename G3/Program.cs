@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace G3 {
-    class Program {
-        static void Main(string[] args) {
+    public class Program {
+        public static void Main(string[] args) {
             var hive = new Hive();
             hive.AddTeleport(new Point(1, 1), new Point(10, 6));
             hive.Print();
@@ -15,7 +12,6 @@ namespace G3 {
         }
 
         public static List<Point> FindPath(Hive hive, Point from, Point to) {
-            var visited = new HashSet<Point>();
             var path = new Dictionary<Point, Point>();
             var queue = new Queue<Point>();
             queue.Enqueue(to);
@@ -24,7 +20,7 @@ namespace G3 {
                 var point = queue.Dequeue();
                 var nextPoints = hive
                     .AreaOfPoint(point.X, point.Y)
-                    .Where(p => hive.IsCouldVisited(p))
+                    .Where(hive.IsCouldVisited)
                     .Where(p => !path.ContainsKey(p));
                 foreach (var nextPoint in nextPoints) {
                     queue.Enqueue(nextPoint);
